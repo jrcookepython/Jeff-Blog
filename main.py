@@ -38,7 +38,6 @@ class BlogPost(db.Model):
     date = db.Column(db.String(250), nullable=False)
     body = db.Column(db.Text, nullable=False)
     img_url = db.Column(db.String(250), nullable=False)
-    video = db.Column(db.String(250), nullable=True)
     comments = relationship("Comment", back_populates="parent_post")
 
 class User(db.Model, UserMixin):
