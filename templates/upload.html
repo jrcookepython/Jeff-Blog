@@ -5,10 +5,23 @@
 
 {% include "header.html" %}
 
-    <h1>Upload Your file here!</h1>
-    <br>
-    {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+<br>
+<br>
+<br>
+<br>
 
+    <header class="masthead" style="background-image: url('{{ url_for('static', filename='img/edit-bg.jpg')}}')">
+        <div class="overlay"></div>
+        <div class="container">
+
+        <h1>Upload Your file here!</h1>
+        <br>
+        {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+
+
+
+        </div>
+    </header>
 {% include "footer.html" %}
 
 {% endblock %}
