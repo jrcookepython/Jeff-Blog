@@ -1,0 +1,15 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% include header.html %}
+
+{% block content %}
+
+    <h1>Upload Your file here!</h1>
+<br>
+    {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+
+
+{% endblock %}
+
+{% include footer.html %}

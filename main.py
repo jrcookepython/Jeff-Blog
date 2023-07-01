@@ -9,7 +9,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
-from forms import CreatePostForm, CommentForm
+from forms import CreatePostForm, CommentForm, UploadForm
 from flask_gravatar import Gravatar
 from functools import wraps
 from flask_gravatar import Gravatar
@@ -231,6 +231,13 @@ def delete_post(post_id):
     db.session.commit()
     return redirect(url_for('get_all_posts'))
 
+@app.route('/upload')
+@admin_only
+def upload():
+    form = UploadForm()
+    if form.validate_on_submit():
+        pass
+    return render_template('upload.html', form=form)
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)

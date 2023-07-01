@@ -14,3 +14,7 @@ class CreatePostForm(FlaskForm):
 class CommentForm(FlaskForm):
     comment = CKEditorField("Comment", validators=[DataRequired()])
     submit_comment = SubmitField("Submit Comment")
+
+class UploadForm(FlaskForm):
+    upload = FileField("Upload Project", validators=[DataRequired()])
+    submit_file = SubmitField("Submit Project")
