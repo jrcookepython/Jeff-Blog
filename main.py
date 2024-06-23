@@ -16,12 +16,14 @@ from flask_gravatar import Gravatar
 import os
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+# app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+app.config['SECRET_KEY'] = "fjdklajfklsajfdlksjalkfdsaj"
 ckeditor = CKEditor(app)
 Bootstrap(app)
 
 ##CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -57,7 +59,7 @@ class Comment(db.Model):
     post_id = db.Column(db.Integer, db.ForeignKey("blog_posts.id"))
     parent_post = relationship("BlogPost", back_populates="comments")
     text = db.Column(db.Text, nullable=False)
-db.create_all()
+
 
 class RegisterForm(FlaskForm):
     email = StringField("Email", validators=[DataRequired()])
@@ -238,6 +240,10 @@ def upload():
     if form.validate_on_submit():
         pass
     return render_template('upload.html', form=form)
+
+@app.route('/donate')
+def donate():
+    return render_template('donate.html')
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
