@@ -6,12 +6,14 @@ node{
 		checkout scm
 	}
 	stage('Build'){
-		try{
-		sh 'python -m py_compile main.py'
-		} catch{Exception e){
-			echo e.toString()
-			archiveArtifacts artifacts: '**/*.*', followSymlinks: false
-			cleanWs()
+		steps {
+			try{
+				sh 'python -m py_compile main.py'
+			} catch{Exception e){
+				echo e.toString()
+				archiveArtifacts artifacts: '**/*.*', followSymlinks: false
+				cleanWs()
+			}
 		}
 	}
 	stage('Test'){
