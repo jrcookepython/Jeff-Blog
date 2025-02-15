@@ -9,7 +9,7 @@ node{
 		steps {
 			try{
 				sh 'python -m py_compile main.py'
-			} catch{Exception e){
+			} catch(Exception e){
 				echo e.toString()
 				archiveArtifacts artifacts: '**/*.*', followSymlinks: false
 				cleanWs()
