@@ -8,4 +8,7 @@ node{
 	stage('Test'){
 		echo 'Run unit tests'
 	}
+	stage('Cleanup'){
+		cleanWs()
+	}
 }
